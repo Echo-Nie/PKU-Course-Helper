@@ -132,6 +132,7 @@ def run(paths, instance=None):
         # Explicit renderer: never fall back to MSHTML/Qt or install a runtime.
         try:
             webview.start(gui='edgechromium', debug=False, http_server=False,
+                          icon=str(resource_root / 'resources' / 'app.ico'),
                           private_mode=True, storage_path=str(paths.cache / 'webview'))
         except Exception as error:
             message = ('无法启动软件私有 WebView2，请重新解压完整软件包；安装版请重新安装。' if runtime else

@@ -18,6 +18,7 @@ analysis = Analysis(
     binaries=[],
     datas=collect_data_files('webview', subdir='js') + [
         (str(frontend), 'frontend/dist'),
+        (str(root / 'resources' / 'app.ico'), 'resources'),
         (str(root / 'resources' / 'model' / 'captcha.onnx'), 'resources/model'),
         (str(root / 'resources' / 'model' / 'manifest.json'), 'resources/model'),
         (str(root / 'user_agents.txt.gz'), '.'),

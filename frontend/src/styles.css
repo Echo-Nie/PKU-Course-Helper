@@ -97,12 +97,12 @@ body,
 }
 .brand-mark {
   width: 42px;
-  height: 46px;
+  height: 42px;
   display: grid;
   place-items: center;
   color: #fff;
-  background: var(--accent);
-  border-radius: 12px 12px 4px 4px;
+  background: #303642;
+  border-radius: 11px;
 }
 .brand strong {
   display: block;

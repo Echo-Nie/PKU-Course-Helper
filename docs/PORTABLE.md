@@ -38,4 +38,4 @@ Microsoft Edge WebView2；如需内置运行环境，可使用单独的私有运
 
 基于 [Aerisun/PKUAutoElective2026](https://github.com/Aerisun/PKUAutoElective2026) 修改，
 继承 Hovennnnn/PKUAutoElective2023 与 zhongxinghong/PKUAutoElective 的工作。
-感谢学长学姐和所有贡献者；非北京大学官方软件。
+感谢学长学姐和所有贡献者。

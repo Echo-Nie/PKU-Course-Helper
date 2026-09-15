@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { createRoot } from "react-dom/client";
 import {
-  BookOpen,
+  TaskMark,
   Plus,
   Play,
   Square,
@@ -32,7 +32,7 @@ import {
   Save,
   LoaderCircle,
   Link2,
-} from "lucide-react";
+} from "./Icons.jsx";
 import { call } from "./bridge.js";
 import LogPanel from "./LogPanel.jsx";
 import { CourseStatus } from "./RuntimeDetails.jsx";
@@ -848,7 +848,7 @@ function App() {
     return (
       <div className="boot">
         <span className="brand-mark">
-          <BookOpen />
+          <TaskMark />
         </span>
         <h1>PKU Course Helper</h1>
         {error ? (
@@ -868,7 +868,7 @@ function App() {
             title="PKU Course Helper"
           >
             <span className="brand-mark">
-              <BookOpen size={22} />
+              <TaskMark size={26} />
             </span>
             <div>
               <strong>北大选课助手</strong>
@@ -1407,7 +1407,7 @@ function App() {
             </section>
             <p className="project-credit">
               基于 Aerisun、Hovennnnn 与 zhongxinghong
-              的开源项目修改，感谢学长学姐的积累与分享。非北京大学官方软件。
+              的开源项目修改，感谢学长学姐的积累与分享。
             </p>
           </div>
         </main>
@@ -1798,7 +1798,7 @@ function Empty({ onAdd }) {
   return (
     <div className="empty-state">
       <div className="empty-graphic">
-        <BookOpen size={30} />
+        <TaskMark size={30} />
         <span>
           <Plus size={12} />
         </span>

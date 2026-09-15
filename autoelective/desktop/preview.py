@@ -33,6 +33,8 @@ def run_preview():
     if not getattr(sys, 'frozen', False):
         (profile / 'frontend' / 'dist').mkdir(parents=True)
         shutil.copy2(root / 'frontend' / 'dist' / 'index.html', profile / 'frontend' / 'dist' / 'index.html')
+        (profile / 'resources').mkdir()
+        shutil.copy2(root / 'resources' / 'app.ico', profile / 'resources' / 'app.ico')
     config = AppConfig(courses=[
         CourseConfig(id='preview-major', name='数据库概论（示例）', school='信息科学技术学院'),
         CourseConfig(id='preview-elective', name='金融数据分析（示例）', school='软件与微电子学院', class_no=0),

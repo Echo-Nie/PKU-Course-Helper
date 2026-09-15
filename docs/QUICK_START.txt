@@ -14,6 +14,6 @@ https://github.com/Echo-Nie/PKU-Course-Helper
 密码仅保存在本次会话。配置和日志位于 data 文件夹，不要公开分享此文件夹。
 建议保留默认 6 秒查询间隔和 0.2 随机偏移。保持网络畅通和电脑唤醒。
 
-本项目基于 Aerisun/PKUAutoElective2026 修改，继承 Hovennnnn/PKUAutoElective2023 与 zhongxinghong/PKUAutoElective 的工作，非学校官方软件。感谢学长学姐们的贡献！
+本项目基于 Aerisun/PKUAutoElective2026 修改，继承 Hovennnnn/PKUAutoElective2023 与 zhongxinghong/PKUAutoElective 的工作。感谢学长学姐们的贡献！
 
 English: Extract the complete ZIP and launch PKUCourseHelper.exe. Enter your university account, add courses with exact names, schools, class numbers and pages, save, then start. Major and elective use the same major entry. Read failure details and confirm enrollment on the school website. Do not share data/. Full bilingual instructions are in the repository README.
