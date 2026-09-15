@@ -1,0 +1,173 @@
+{
+  "checkpoint": "57000",
+  "sample_count": 20,
+  "matching_predictions": 20,
+  "correct_predictions": 20,
+  "random_decoder_cases": 200,
+  "random_decoder_mismatches": 0,
+  "results": [
+    {
+      "sample": "2a2m_1675139076.jpg",
+      "expected": "2a2m",
+      "tensorflow": "2a2m",
+      "onnx": "2a2m",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.7076730728149414e-05
+    },
+    {
+      "sample": "2a3cx_1682091156618.jpg",
+      "expected": "2a3cx",
+      "tensorflow": "2a3cx",
+      "onnx": "2a3cx",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.2874603271484375e-05
+    },
+    {
+      "sample": "2a5c_1682091388601.jpg",
+      "expected": "2a5c",
+      "tensorflow": "2a5c",
+      "onnx": "2a5c",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.239776611328125e-05
+    },
+    {
+      "sample": "2anwx_1679029027966.jpg",
+      "expected": "2anwx",
+      "tensorflow": "2anwx",
+      "onnx": "2anwx",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.430511474609375e-05
+    },
+    {
+      "sample": "2ega_1675139092.jpg",
+      "expected": "2ega",
+      "tensorflow": "2ega",
+      "onnx": "2ega",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.4781951904296875e-05
+    },
+    {
+      "sample": "cecc_1682091244436.jpg",
+      "expected": "cecc",
+      "tensorflow": "cecc",
+      "onnx": "cecc",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.811981201171875e-05
+    },
+    {
+      "sample": "dnwp6_1679028861173.jpg",
+      "expected": "dnwp6",
+      "tensorflow": "dnwp6",
+      "onnx": "dnwp6",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.1205673217773438e-05
+    },
+    {
+      "sample": "dnynw_1679141499645.jpg",
+      "expected": "dnynw",
+      "tensorflow": "dnynw",
+      "onnx": "dnynw",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 8.344650268554688e-06
+    },
+    {
+      "sample": "dp4y_1679029097363.jpg",
+      "expected": "dp4y",
+      "tensorflow": "dp4y",
+      "onnx": "dp4y",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.1920928955078125e-05
+    },
+    {
+      "sample": "mgmn_1679141417300.jpg",
+      "expected": "mgmn",
+      "tensorflow": "mgmn",
+      "onnx": "mgmn",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.049041748046875e-05
+    },
+    {
+      "sample": "mgnd_1679141479460.jpg",
+      "expected": "mgnd",
+      "tensorflow": "mgnd",
+      "onnx": "mgnd",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 2.110004425048828e-05
+    },
+    {
+      "sample": "n4efg_1682091359260.jpg",
+      "expected": "n4efg",
+      "tensorflow": "n4efg",
+      "onnx": "n4efg",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.5735626220703125e-05
+    },
+    {
+      "sample": "n5edf_1682091267906.jpg",
+      "expected": "n5edf",
+      "tensorflow": "n5edf",
+      "onnx": "n5edf",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.049041748046875e-05
+    },
+    {
+      "sample": "n6ad_1682091260433.jpg",
+      "expected": "n6ad",
+      "tensorflow": "n6ad",
+      "onnx": "n6ad",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.1205673217773438e-05
+    },
+    {
+      "sample": "nnman_1682091096881.jpg",
+      "expected": "nnman",
+      "tensorflow": "nnman",
+      "onnx": "nnman",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.621246337890625e-05
+    },
+    {
+      "sample": "penn_1682091334725.jpg",
+      "expected": "penn",
+      "tensorflow": "penn",
+      "onnx": "penn",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.621246337890625e-05
+    },
+    {
+      "sample": "pf32_1682091230034.jpg",
+      "expected": "pf32",
+      "tensorflow": "pf32",
+      "onnx": "pf32",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.0251998901367188e-05
+    },
+    {
+      "sample": "wd54_1679029052627.jpg",
+      "expected": "wd54",
+      "tensorflow": "wd54",
+      "onnx": "wd54",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.0162591934204102e-05
+    },
+    {
+      "sample": "wd55m_1679028935310.jpg",
+      "expected": "wd55m",
+      "tensorflow": "wd55m",
+      "onnx": "wd55m",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 7.3909759521484375e-06
+    },
+    {
+      "sample": "wda3_1679141240241.jpg",
+      "expected": "wda3",
+      "tensorflow": "wda3",
+      "onnx": "wda3",
+      "input_max_abs_error": 0.0,
+      "logits_max_abs_error": 1.0967254638671875e-05
+    }
+  ],
+  "synthetic_preprocessing_cases": 8,
+  "synthetic_preprocessing_max_abs_error": 1.7881393432617188e-07,
+  "scope": "Offline repository fixtures only; not a claim of accuracy on unseen captchas."
+}

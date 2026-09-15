@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "checkpoint": "recognizer_v11-CNN5-GRU-H128-CTC-C1.model-57000",
+  "sha256": "2178165851f40868117594d8b0d31527dc367d18aa4e985ec083b174b34df539",
+  "checkpoint_sha256": {
+    "recognizer_v11-CNN5-GRU-H128-CTC-C1.model-57000.data-00000-of-00001": "2b96899357c9b117bfc9500f21e6513d2a2a1a870f6287192cbd0ae80ecdfd3a",
+    "recognizer_v11-CNN5-GRU-H128-CTC-C1.model-57000.index": "2e678d686c8bf0b74a5d45424134f44c5576a5d988999e4e572e5d26127a2869",
+    "recognizer_v11-CNN5-GRU-H128-CTC-C1.model-57000.meta": "3546592a054f5e1f6d13988221f0ecf005f64dfec4d8c58020cfc63f80afb888"
+  },
+  "input": "input:0",
+  "output": "output/predict:0",
+  "input_shape": [
+    1,
+    130,
+    52,
+    3
+  ],
+  "alphabet": [
+    "",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "m",
+    "n",
+    "p",
+    "w",
+    "x",
+    "y",
+    ""
+  ],
+  "ctc": {
+    "blank_index": 22,
+    "beam_width": 1,
+    "merge_repeated": false
+  },
+  "preprocessing": {
+    "frame": 0,
+    "mode": "RGB",
+    "alpha_background": "white",
+    "resize": [
+      130,
+      52
+    ],
+    "interpolation": "bilinear_half_pixel_float32",
+    "axes": "batch,width,height,channel",
+    "scale": "1/255"
+  },
+  "export": {
+    "tensorflow": "2.12.0",
+    "tf2onnx": "1.16.1",
+    "onnx_opset": 15
+  }
+}

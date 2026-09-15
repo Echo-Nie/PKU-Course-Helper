@@ -1,0 +1,133 @@
+name: Release Windows portable
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Trial portable version (for example 1.2.0-rc.1). Manual runs do not publish.'
+        required: true
+        default: '1.0.1'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-portable-${{ github.event.release.id || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 90
+    outputs:
+      artifact_id: ${{ steps.upload.outputs.artifact-id }}
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      UV_PROJECT_ENVIRONMENT: .venv-desktop
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONNOUSERSITE: '1'
+      PYTHONIOENCODING: utf-8
+      UV_PYTHON_INSTALL_REGISTRY: '0'
+      PSModuleAnalysisCachePath: NUL
+    steps:
+      - name: Check out the triggering commit (not a moving branch)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: '0.10.3'
+          python-version: '3.11.14'
+          enable-cache: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22.23.2'
+          package-manager-cache: false
+      - name: Validate release version before building
+        id: version
+        env:
+          TRIAL_VERSION: ${{ inputs.version }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $Event = Get-Content -LiteralPath $env:GITHUB_EVENT_PATH -Raw | ConvertFrom-Json
+          $Tag = if ($env:GITHUB_EVENT_NAME -eq 'release') { $Event.release.tag_name } else { '' }
+          $Requested = if ($Tag) { $Tag } else { $env:TRIAL_VERSION }
+          $Version = & uv run --no-project --python 3.11.14 python tools/release_assets.py version $Requested
+          if ($LASTEXITCODE -ne 0) { throw 'Invalid release version.' }
+          @("version=$Version", "tag=$Tag") | Add-Content -LiteralPath $env:GITHUB_OUTPUT -Encoding utf8
+      - name: Download the pinned private WebView2 (no installer tools)
+        id: tools
+        run: ./packaging/setup_release_tools.ps1
+      - name: Test, freeze and audit the self-contained portable ZIP
+        env:
+          WEBVIEW_CAB: ${{ steps.tools.outputs.webview_cab }}
+          RUNTIME_SHA256: ${{ steps.tools.outputs.runtime_sha256 }}
+          RUNTIME_VERSION: ${{ steps.tools.outputs.runtime_version }}
+        run: |
+          ./packaging/build_private_portable.ps1 `
+            -WebView2RuntimeCab $env:WEBVIEW_CAB -RuntimeSha256 $env:RUNTIME_SHA256 `
+            -RuntimeVersion $env:RUNTIME_VERSION
+      - name: Stage only verified release assets
+        env:
+          APP_VERSION: ${{ steps.version.outputs.version }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          & .venv-desktop/Scripts/python.exe tools/release_assets.py prepare `
+            --build-root dist/portable-private --destination dist/release `
+            --version $env:APP_VERSION --tag "$env:RELEASE_TAG" --commit $env:GITHUB_SHA --inputs packaging/release-inputs.json
+          if ($LASTEXITCODE -ne 0) { throw 'Release evidence validation failed.' }
+          & .venv-desktop/Scripts/python.exe tools/release_assets.py verify --directory dist/release --commit $env:GITHUB_SHA
+          if ($LASTEXITCODE -ne 0) { throw 'Release asset validation failed.' }
+      - name: Keep portable delivery and separate build evidence
+        id: upload
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: windows-portable-${{ github.run_id }}-${{ github.run_attempt }}
+          path: dist/release/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+      - name: Keep bounded diagnostic evidence even on failure
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: windows-portable-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            dist/portable-private/**/*.json
+            dist/portable-private/**/*.xml
+            build/private-portable-*/base-output/**/*.xml
+            build/private-portable-*/base-output/**/*.json
+          if-no-files-found: warn
+          retention-days: 14
+
+  publish:
+    name: Attach verified assets to the published Release
+    needs: build
+    if: ${{ github.event_name == 'release' && github.event.action == 'published' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          artifact-ids: ${{ needs.build.outputs.artifact_id }}
+          path: release-assets
+          merge-multiple: true
+          digest-mismatch: error
+      - name: Recheck hashes and release identity, then upload without overwriting
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 tools/release_assets.py publish --directory release-assets
+          --commit "$GITHUB_SHA" --event "$GITHUB_EVENT_PATH"

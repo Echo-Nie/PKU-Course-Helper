@@ -1,0 +1,9 @@
+# Desktop runtime; Python 3.11 x64 on Windows. See pyproject.toml / uv.lock for locked builds.
+pywebview>=6,<7; sys_platform == "win32"
+numpy==1.26.4
+onnxruntime>=1.20,<2
+pillow>=11,<13
+requests>=2.32,<3
+lxml>=5,<7
+colorama>=0.4,<0.5
+pyyaml>=6,<7

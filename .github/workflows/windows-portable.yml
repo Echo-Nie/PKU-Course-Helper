@@ -1,0 +1,51 @@
+name: Build Windows portable artifact
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  portable:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    env:
+      UV_PROJECT_ENVIRONMENT: .venv-desktop
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Prepare frontend resources for offline self-tests
+        shell: pwsh
+        working-directory: frontend
+        run: |
+          npm ci --no-audit --no-fund
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm run build
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Run offline Python tests
+        shell: pwsh
+        run: |
+          uv sync --locked --group dev --group build
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          .venv-desktop/Scripts/python.exe -m pytest -q
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build and audit portable ZIP
+        shell: pwsh
+        run: ./packaging/build_windows.ps1
+      - name: Upload audited build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: PKUCourseHelper-windows-x64-portable
+          path: dist/portable/**
+          if-no-files-found: error
+          retention-days: 14

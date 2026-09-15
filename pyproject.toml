@@ -1,0 +1,31 @@
+[project]
+name = "pku-auto-elective-desktop"
+version = "1.0.1"
+description = "Portable native desktop console for PKU Auto Elective"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "pywebview>=6,<7; sys_platform == 'win32'",
+  "numpy==1.26.4",
+  "onnxruntime>=1.20,<2",
+  "pillow>=11,<13",
+  "requests>=2.32,<3",
+  "lxml>=5,<7",
+  "colorama>=0.4,<0.5",
+  "pyyaml>=6,<7",
+]
+
+[dependency-groups]
+dev = ["pytest>=8,<9"]
+build = ["pyinstaller>=6.12,<7"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true

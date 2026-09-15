@@ -1,0 +1,19 @@
+PKUCourseHelper · 免安装版
+
+北大选课助手 / PKU Course Helper
+https://github.com/Echo-Nie/PKU-Course-Helper
+
+1. 完整解压后双击 PKUCourseHelper.exe，保留 _internal 等所有文件。
+2. 在同一页面下方填写统一认证学号、密码，添加目标课程。
+3. 主修与选修共用主修入口，辅修使用辅修入口。核对课程全名、开课单位、班号和页码。班号 00 与 0 等价。
+4. 按需调整优先级、互斥组及延迟阈值。保存后点击上方“开始运行”。
+5. 查看运行情况、状态下方的具体原因和详细日志。修改配置后，可确认重启应用修改。
+6. 最终以学校已选列表为准。退出软件会停止任务。
+
+基础包需要 Windows x64、系统 WebView2 和 .NET Framework 4.6.2+。带 runtime 文件夹的发行包使用内置 WebView2。
+密码仅保存在本次会话。配置和日志位于 data 文件夹，不要公开分享此文件夹。
+建议保留默认 6 秒查询间隔和 0.2 随机偏移。保持网络畅通和电脑唤醒。
+
+本项目基于 Aerisun/PKUAutoElective2026 修改，继承 Hovennnnn/PKUAutoElective2023 与 zhongxinghong/PKUAutoElective 的工作，非学校官方软件。感谢学长学姐们的贡献！
+
+English: Extract the complete ZIP and launch PKUCourseHelper.exe. Enter your university account, add courses with exact names, schools, class numbers and pages, save, then start. Major and elective use the same major entry. Read failure details and confirm enrollment on the school website. Do not share data/. Full bilingual instructions are in the repository README.
