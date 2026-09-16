@@ -107,7 +107,7 @@ def check_elective_title(r, **kwargs):
 def check_elective_tips(r, **kwargs):
     assert hasattr(r, "_tree")
     if r._tree is None:
-        raise UnexceptedHTMLFormat(response=r, msg='学校返回空页面，请稍后重试')
+        raise UnexpectedHTMLFormat(response=r, msg='学校返回空页面，请稍后重试')
     tips = get_tips(r._tree)
 
     try:

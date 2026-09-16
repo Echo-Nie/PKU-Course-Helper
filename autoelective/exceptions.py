@@ -16,7 +16,7 @@ __all__ = [
         "StatusCodeError",
         "ServerError",
         "OperationFailedError",
-        "UnexceptedHTMLFormat",
+        "UnexpectedHTMLFormat",
 
         "IAAAException",
             "IAAANotSuccessError",
@@ -107,7 +107,7 @@ class OperationFailedError(AutoElectiveClientException):
     code = 103
     desc = r"some operations failed for unknown reasons"
 
-class UnexceptedHTMLFormat(AutoElectiveClientException):
+class UnexpectedHTMLFormat(AutoElectiveClientException):
     code = 104
     desc = r"unable to parse HTML content"
 

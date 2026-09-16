@@ -100,7 +100,7 @@ def test_unknown_feedback_is_bounded_and_redacts_credentials_without_dropping_th
     assert len(safe_school_text('长' * 16000)) < 520
     assert '隐藏原文' in safe_school_text('长' * 16001)
     assert 'private' not in describe_error(RuntimeError('private raw exception'))
-    assert '无法解析' in describe_error(errors.UnexceptedHTMLFormat())
+    assert '无法解析' in describe_error(errors.UnexpectedHTMLFormat())
 
 
 def test_nested_school_error_text_and_plain_tip_container_are_readable():

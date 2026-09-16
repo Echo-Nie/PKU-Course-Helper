@@ -16,7 +16,7 @@ def b(s):
     elif isinstance(s, bytes):
         return s
     else:
-        raise TypeError("unsupport type %s of %r" % (type(s), s))
+        raise TypeError("Unsupported type %s of %r" % (type(s), s))
 
 def u(s):
     if isinstance(s, bytes):
@@ -24,7 +24,7 @@ def u(s):
     elif isinstance(s, (str,int,float)):
         return str(s)
     else:
-        raise TypeError("unsupport type %s of %r" % (type(s), s))
+        raise TypeError("Unsupported type %s of %r" % (type(s), s))
 
 def xMD5(data):
     return hashlib.md5(b(data)).hexdigest()

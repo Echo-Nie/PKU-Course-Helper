@@ -22,6 +22,10 @@ build = ["pyinstaller>=6.12,<7"]
 testpaths = ["tests"]
 pythonpath = ["."]
 
+[tool.typos.default.extend-words]
+ine = "ine" # PowerShell case-insensitive inequality operator
+datas = "datas" # PyInstaller API parameter and attribute
+
 [tool.uv]
 package = false
 

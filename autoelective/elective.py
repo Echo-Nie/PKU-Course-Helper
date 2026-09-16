@@ -211,7 +211,7 @@ class ElectiveClient(BaseClient):
         if "/supplement/electSupplement.do" not in href:
             raise RuntimeError(
                 "If %r is really a 'electSupplement' href, it would certainly contains '/supplement/electSupplement.do'. "
-                "If you see this error, that means maybe something terrible will happpen ! Please raise an issue at "
+                "If you see this error, that means maybe something terrible will happen! Please raise an issue at "
                 "https://github.com/zhongxinghong/PKUAutoElective/issues" % href
             )
 
