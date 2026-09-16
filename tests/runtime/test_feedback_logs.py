@@ -23,7 +23,7 @@ def test_actual_hooks_deliver_unknown_system_tips_and_pe_warning_to_desktop(tmp_
     rows = json.loads(result.stdout)
     assert [r['kind'] for r in rows] == ['InvalidTokenError', 'SessionExpiredError', 'SystemException',
                                        'MultiPECourseError', 'TipsException', 'SystemException',
-                                       'UnexceptedHTMLFormat', 'IAAANotSuccessError']
+                                       'UnexpectedHTMLFormat', 'IAAANotSuccessError']
     assert all(r['response_retained'] for r in rows)
     assert '未知错误警告' in rows[2]['log'] and '未知错误警告' in rows[4]['log']
     for secret in ('fixture-password', '0000000000', 'private-token', 'do-not-log-whole-page'):

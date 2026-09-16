@@ -103,7 +103,7 @@ def _format_timestamp(timestamp):
         return str(timestamp)
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(timestamp))
 
-def _dump_respose_content(content, filename):
+def _dump_response_content(content, filename):
     if os.environ.get("PKU_AUTOELECTIVE_DATA_DIR"):
         return
     path = os.path.join(_USER_WEB_LOG_DIR, filename)
@@ -125,8 +125,8 @@ def _fetch_course_page(client, page, limiter=None):
             return response, get_courses(tables[1]), get_courses_with_detail(tables[0])
         except IndexError:
             filename = "elective.get_SupplyCancel_%d.html" % int(time.time() * 1000)
-            _dump_respose_content(response.content, filename)
-            raise UnexceptedHTMLFormat
+            _dump_response_content(response.content, filename)
+            raise UnexpectedHTMLFormat
     for attempt in range(3):
         if limiter is not None:
             limiter.wait()
@@ -663,7 +663,7 @@ def run_elective_loop():
                     if course.used_quota == 0:
                         cout.warning("Abnormal status of %s, a bug of 'elective.pku.edu.cn' found" % course)
                     else:
-                        ferr.critical("Unexcepted behaviour") # 没有理由运行到这里
+                        ferr.critical("Unexpected behaviour") # 没有理由运行到这里
                         _add_error(e)
 
                 except ElectionSuccess as e:
@@ -710,9 +710,9 @@ def run_elective_loop():
             cout.warning("OperationFailedError encountered")
             _add_error(e)
 
-        except UnexceptedHTMLFormat as e:
+        except UnexpectedHTMLFormat as e:
             ferr.error(e)
-            cout.warning("UnexceptedHTMLFormat encountered")
+            cout.warning("UnexpectedHTMLFormat encountered")
             _add_error(e)
 
         except RequestException as e:

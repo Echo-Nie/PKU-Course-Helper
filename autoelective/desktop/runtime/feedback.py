@@ -16,7 +16,7 @@ ERROR_REASONS = {
     'ServerError': '学校服务器暂时异常', 'StatusCodeError': '学校返回异常状态码',
     'IAAANotSuccessError': '统一认证未成功，稍后重试',
     'OperationFailedError': '学校操作失败，原因未明确',
-    'UnexceptedHTMLFormat': '学校页面结构无法解析，将按退避策略重新查询',
+    'UnexpectedHTMLFormat': '学校页面结构无法解析，将按退避策略重新查询',
 }
 SCHOOL_ACTIONS = {
     'CaughtCheatingError': '学校已限制本次访问，任务安全停止；不自动重试，请先在学校网页核对。仅凭此提示不能确定是否为 Referer 或验证码流程问题',
